@@ -80,6 +80,7 @@ begin
                   -- illegal
                when "0001" => -- Immediate Indirect
                   addbus_value2 <= "0000000000000000" & immediate;   
+				  --addbus_value(16) <= '1';
                when "0010" => -- Immediate High
                   -- illegal
                when "0011" => -- Immediate High Indirect
@@ -103,6 +104,7 @@ begin
                when others => null;
             end case;
 	end if;
+			-- we wrote
 		    if mmoe = '1' and opcode = stm_opcode and rdoe = '1' and inc_w = '0' then 
 			databus_value <= databus_value + 4; -- increment databus value by 4
 		    end if;
@@ -115,6 +117,7 @@ begin
 			if mmoe = '1' and opcode = stm_opcode and rs1oe = '1' and inc_w = '1' then
 			addbus_value2 <= databus; -- put the incremented address on the addbus			
 			end if;
+			-- end of we wrote
 			end if;
 		end process;	
    
@@ -194,7 +197,8 @@ begin
                   -- illegal
                when "0001" => -- Immediate Indirect
                   enable_addbus <= '1';
-                  write_internal <= '1';				
+                  write_internal <= '1';
+				  addbus(16) <= '1';
                when "0010" => -- Immediate High
                   -- illegal
                when "0011" => -- Immediate High Indirect
@@ -241,6 +245,7 @@ begin
          if pswld='1' then
             psw_internal <= nzvc;
             end if;
+			-- we wrote
 		 if mmoe = '1' and opcode = stm_opcode and rdoe = '1' and inc_w = '0' then 
 			enable_databus <= '1';
 			end if;
@@ -259,6 +264,7 @@ begin
 			enable_addbus <= '1';
 			write_internal <= '1';
 		end if;		
+		-- end we wrote
 	   end if;
 	   end if;
    end process;

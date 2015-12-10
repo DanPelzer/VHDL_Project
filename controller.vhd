@@ -196,7 +196,7 @@ begin
 		   MMOE <= '1'; rdoe <= '1'; tri <= '0'; r_w <= '1'; inc_w <= '1'; -- write decremented value back
 			next_state <= 34;
 		 when 34 =>
-		 ealu <= '1'; ldr1 <= '1'; -- enable alu
+		 --ealu <= '1'; ldr1 <= '1'; -- enable alu
 			next_state <= 8;
 		when others =>
             next_state <= 25;

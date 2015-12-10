@@ -21,9 +21,10 @@ begin
     process(address)
     begin
          CASE address(9 downto 2) IS
-            WHEN "00000000" => data_out <= x"8100F000";--LOAD l#0001,R1
+            WHEN "00000000" => data_out <= x"8100F000";--LOAD l#F000,R1
             WHEN "00000001" => data_out <= x"82001000";--LOAD l#1000,R2
-            WHEN "00000010" => data_out <= x"72511000";--STM R1,+(R2) (000A) -> (1004)
+			WHEN "00000010" => data_out <= x"91101004"; -- STO R1,(l#1004)
+            WHEN "00000011" => data_out <= x"72520100";--STM +(R2),R2 (000A) -> (1004)
             --WHEN "00000100" => data_out <= x"00000000";
             WHEN OTHERS => data_out <= x"00000000";
            end case;
